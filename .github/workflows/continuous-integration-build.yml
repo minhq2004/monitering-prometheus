@@ -42,7 +42,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push Hello Spring K8S Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./hello-spring-k8s
           file: ./hello-spring-k8s/Dockerfile
@@ -50,7 +50,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/hello-spring-k8s:latest
 
       - name: Build and Push Hello Caller Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./hello-caller
           file: ./hello-caller/Dockerfile
