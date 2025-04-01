@@ -2,6 +2,16 @@ Họ tên: Nguyễn Quang Minh
 
 MSV: 22024547
 
+Deploy the chart into a new namespace:
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+helm repo update
+
+helm upgrade kube-prometheus-stack prometheus-community/kube-prometheus-stack -n kube-prometheus-stack -f node-exporter-values.yaml
+```
+
 Prometheus for monitering:
 ![prom1](img/pro1.png)
 
@@ -17,6 +27,14 @@ Node
 
 Pod
 ![Pod](img/gra2.png)
+
+Redeploy the Prometheus stack and apply your Alertmanager settings:
+
+```bash
+helm upgrade kube-prometheus-stack prometheus-community/kube-prometheus-stack \  -n kube-prometheus-stack \
+  --reuse-values \
+  -f alertmanager-config.yaml
+```
 
 Configure alerts with Alertmanager
 
