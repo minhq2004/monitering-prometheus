@@ -1,0 +1,28 @@
+alertmanager:
+  config:
+    global:
+      resolve_timeout: 5m
+
+    route:
+      receiver: all-receivers  =
+      group_wait: 5s
+      group_interval: 10s
+      repeat_interval: 1h
+
+    receivers:
+      - name: "null"
+
+      - name: email-notifier
+        email_configs:
+          - to: "ya15510@gmail.com"
+            from: "ya15510@gmail.com"
+            smarthost: "smtp.gmail.com:587"
+            auth_username: "ya15510@gmail.com"
+            auth_identity: "ya15510@gmail.com"
+            auth_password: "nzit iwot cdys kuic"
+            require_tls: true
+
+      - name: webhook-notifier
+        webhook_configs:
+          - url: "http://127.0.0.1:3000/webhook"
+            send_resolved: true
